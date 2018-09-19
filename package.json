@@ -2,7 +2,13 @@
   "author": "Jake Luer <jake@alogicalparadox.com>",
   "name": "chai",
   "description": "BDD/TDD assertion library for node.js and the browser. Test framework agnostic.",
-  "keywords": [ "test", "assertion", "assert", "testing", "chai" ],
+  "keywords": [
+    "test",
+    "assertion",
+    "assert",
+    "testing",
+    "chai"
+  ],
   "homepage": "http://chaijs.com",
   "license": "MIT",
   "contributors": [
@@ -27,16 +33,20 @@
     "node": ">= 0.4.0"
   },
   "dependencies": {
-      "assertion-error": "1.0.0"
+    "assertion-error": "1.0.0",
+    "browserify": "^16.2.2",
+    "bundle-js": "^1.0.2",
+    "webpack": "^4.19.1"
   },
   "devDependencies": {
-      "component": "*"
-    , "coveralls": "2.0.16"
-    , "mocha": "1.8.2"
-    , "mocha-cloud": "*"
-    , "mocha-lcov-reporter": "0.0.1"
-    , "mocha-phantomjs": "2.0.2"
-    , "connect": "2.7.x"
-    , "jscoverage": "0.3.7"
+    "component": "*",
+    "connect": "2.7.x",
+    "coveralls": "2.0.16",
+    "jscoverage": "0.3.7",
+    "mocha": "1.8.2",
+    "mocha-cloud": "*",
+    "mocha-lcov-reporter": "0.0.1",
+    "mocha-phantomjs": "2.0.2",
+    "webpack-cli": "^3.1.0"
   }
 }

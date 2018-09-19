@@ -13,28 +13,15 @@ node_modules: package.json
 
 #
 # Browser Build
-# 
-
-chai.js: node_modules lib/* components
-	@printf "\n  ==> [Browser :: build]\n"
-	@./node_modules/.bin/component-build -s chai -o .
-	@mv build.js chai.js
-
 #
-# Components
-# 
 
-build: components lib/*
-	@printf "\n  ==> [Component :: build]\n\n"
-	@./node_modules/.bin/component-build --dev
+chai.js:
+	npx webpack --config webpack.config.js
 
-components: node_modules component.json
-	@printf "\n  ==> [Component :: install]"
-	@./node_modules/.bin/component-install --dev
 
 #
 # Tests
-# 
+#
 
 test: test-node test-browser
 test-all: test-node test-browser test-component test-cov
@@ -59,7 +46,7 @@ test-component: build has-phantomjs
 		--reporter $(REPORTER) \
 		./test/browser/component.html
 
-test-cov: lib-cov 
+test-cov: lib-cov
 	@CHAI_COV=1 NODE_ENV=test ./node_modules/.bin/mocha \
 		--require ./test/bootstrap \
 		--reporter html-cov \
@@ -76,17 +63,17 @@ test-travisci: test-node test-browser lib-cov
 		--ui tdd \
 		$(TESTS) \
 		| ./node_modules/coveralls/bin/coveralls.js
-	
+
 #
 # Coverage
-# 
+#
 
 lib-cov: clean-cov
 	@./node_modules/jscoverage/bin/jscoverage lib lib-cov
 
 #
 # Clean up
-# 
+#
 
 clean: clean-node clean-browser clean-components clean-cov
 
@@ -117,7 +104,7 @@ endif
 # Instructions
 #
 
-.PHONY: all 
-.PHONY: test test-all test-node test-browser test-component test-cov 
-.PHONY: clean clean-node clean-browser clean-components clean-cov 
-.PHONY: has-phantomjs has-jscoverage 
+.PHONY: all chai.js
+.PHONY: test test-all test-node test-browser test-component test-cov
+.PHONY: clean clean-node clean-browser clean-components clean-cov
+.PHONY: has-phantomjs has-jscoverage
